@@ -21,7 +21,9 @@ public class Scheduler {
     public void useRR() {}
 
     public void executeScheduler() {
+        System.out.println("-----INPUTS-----");
         testCases = input.nextInt();
+        input.nextLine();
         schedulerAlgo = new String[testCases];
         processList = new Process[testCases][];
 
@@ -32,7 +34,7 @@ public class Scheduler {
             schedulerAlgo[i] = stdInput[1];
 
             if(schedulerAlgo[i].equals("RR")) {
-                timeQuantum.add(input.nextInt());
+                timeQuantum.add(Integer.parseInt(stdInput[2]));
             }
 
             processList[i] = new Process[numOfProcesses];
@@ -43,11 +45,12 @@ public class Scheduler {
                 processList[i][j] = new Process(j, arrivalTime, burstTime, niceLevel);
             }
         } 
+        System.out.println("\n" + "-----OUTPUT-----");
 
         // Output
         for(int i = 0; i < processList.length; i++) {
+            System.out.println((i + 1) + " " + schedulerAlgo[i]);
             for(int j = 0; j < processList[i].length; j++) {
-                System.out.println((i + 1) + " " + schedulerAlgo[i]);
 
                 if(schedulerAlgo[i].equals("FCFS")) {
                     useFCFS();
