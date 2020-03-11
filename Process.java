@@ -7,4 +7,20 @@ public class Process {
         this.burstTime = burstTime;
         this.niceLevel = niceLevel;
     }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public int getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public int getBurstTime() {
+        return burstTime;
+    }
+
+    public int getNiceTime() {
+        return niceLevel;
+    }
 }
