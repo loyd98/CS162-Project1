@@ -31,6 +31,7 @@ public class Scheduler {
         Clones the processList array so that it is arranged by arrival time.
         The processList array is retained so that each process is arranged by index when 
         the array is iterated upon for the performance analysis portion of the output. 
+        The arrivalTimeList is a deep copy of arrivalTimeList.
         */
         Process[] arrivalTimeList = processList.clone();
         bubbleSort(arrivalTimeList);
@@ -60,7 +61,7 @@ public class Scheduler {
         System.out.println("Total time elapsed: " + timeElapsed + "ns");
         System.out.println("Total CPU burst time: " + totalBurstTime + "ns");
         System.out.println("CPU Utilization: " + (int)Math.floor(((float) totalBurstTime / timeElapsed) * 100) + "%");
-        System.out.println("Throughput: " + (df.format((float)processList.length / timeElapsed)) + " processes/ns");
+        System.out.println("Throughput: " + (df.format((float) processList.length / timeElapsed)) + " processes/ns");
 
         System.out.println("Waiting times:");
         for(int i = 0; i < processList.length; i++) {
