@@ -31,7 +31,7 @@ public class Scheduler {
         Clones the processList array so that it is arranged by arrival time.
         The processList array is retained so that each process is arranged by index when 
         the array is iterated upon for the performance analysis portion of the output. 
-        The arrivalTimeList is a deep copy of arrivalTimeList.
+        The arrivalTimeList is a deep copy of processList.
         */
         Process[] arrivalTimeList = processList.clone();
         bubbleSort(arrivalTimeList);
