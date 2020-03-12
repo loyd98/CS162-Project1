@@ -19,29 +19,44 @@ public class Scheduler {
         input = new Scanner(System.in);
     }
 
-    // Scheduler Algorithms 
+    // First Come First Served Algorithm 
     public void useFCFS(Process[] processList) {
         int timeElapsed = 0;
         int totalBurstTime = 0;
         float totalWaitingTime = 0;
         float totalTurnaroundTime = 0;
         float totalResponseTime = 0;
+
+        /* 
+        Clones the processList array so that it is arranged by arrival time.
+        The processList array is retained so that each process is arranged by index when 
+        the array is iterated upon for the performance analysis portion of the output. 
+        */
         Process[] arrivalTimeList = processList.clone();
         bubbleSort(arrivalTimeList);
+
         for(int i = 0; i < arrivalTimeList.length; i++) {
             if(timeElapsed < arrivalTimeList[i].getArrivalTime()) {
                 timeElapsed = arrivalTimeList[i].getArrivalTime();
             }
+            // This updates the process's waiting time if it's been waiting for the previous process to finish.
             else if(timeElapsed > arrivalTimeList[i].getArrivalTime()) {
                 arrivalTimeList[i].updateWaitingTime(timeElapsed - arrivalTimeList[i].getArrivalTime());
             }
+
+            // Updates the performance parameters of current process
             arrivalTimeList[i].updateTurnaroundTime(arrivalTimeList[i].getWaitingTime() + arrivalTimeList[i].getBurstTime());
             arrivalTimeList[i].updateResponseTime(timeElapsed - arrivalTimeList[i].getArrivalTime());
+
+            // Output of FCFS Algorithm per processor
             System.out.println(timeElapsed + " " + arrivalTimeList[i].getIndex() + " " + arrivalTimeList[i].getBurstTime() + "X");
+            
+            // Keeps track of the time elapsed and total burst time. To be used for analysis portion of data output.
             timeElapsed += arrivalTimeList[i].getBurstTime();
             totalBurstTime += arrivalTimeList[i].getBurstTime();
         }
 
+        // FCFS Data Analysis
         System.out.println("Total time elapsed: " + timeElapsed + "ns");
         System.out.println("Total CPU burst time: " + totalBurstTime + "ns");
         System.out.println("CPU Utilization: " + (int)Math.floor(((float) totalBurstTime / timeElapsed) * 100) + "%");
@@ -69,12 +84,16 @@ public class Scheduler {
         System.out.println("Average response time: " + df.format(totalResponseTime / processList.length) + "ns");
     }
 
+    // Shortest Job First (non-preemptive) Algorithm 
     public void useSJF(Process[] processList) {}
 
+    // Shortest Remaining Time First (preemptive) Algorithm 
     public void useSRTF(Process[] processList) {}
 
+    // Priority (preemptive) Algorithm 
     public void useP(Process[] processList) {}
 
+    // Round-Robin Algorithm 
     public void useRR(Process[] processList, int q) {}
 
     // Arranges the list of processes by their arrival time
@@ -112,6 +131,7 @@ public class Scheduler {
                 int arrivalTime = input.nextInt(); 
                 int burstTime = input.nextInt();
                 int niceLevel = input.nextInt();
+                input.nextLine();
                 processList[i][j] = new Process(j, arrivalTime, burstTime, niceLevel);
             }
         } 
