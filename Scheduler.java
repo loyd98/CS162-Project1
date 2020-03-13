@@ -85,7 +85,11 @@ public class Scheduler {
     }
 
     // Prints out the analysis portion of the output 
-    public void analyzePerformance(Process[] processList, int timeElapsed, int totalBurstTime, float totalWaitingTime, float totalTurnaroundTime, float totalResponseTime) {
+    public void analyzePerformance(Process[] processList, int timeElapsed, int totalBurstTime) {
+        float totalWaitingTime = 0;
+        float totalTurnaroundTime = 0;
+        float totalResponseTime = 0;
+
         System.out.println("Total time elapsed: " + timeElapsed + "ns");
         System.out.println("Total CPU burst time: " + totalBurstTime + "ns");
         System.out.println("CPU Utilization: " + (int)Math.floor(((float) totalBurstTime / timeElapsed) * 100) + "%");
@@ -117,9 +121,6 @@ public class Scheduler {
     public void useFCFS(Process[] processList) {
         int timeElapsed = 0;
         int totalBurstTime = 0;
-        float totalWaitingTime = 0;
-        float totalTurnaroundTime = 0;
-        float totalResponseTime = 0;
 
         /* 
         Clones the processList array so that it is arranged by arrival time.
@@ -150,9 +151,9 @@ public class Scheduler {
             timeElapsed += arrivalTimeList[i].getBurstTime();
             totalBurstTime += arrivalTimeList[i].getBurstTime();
         }
-        
+
         // FCFS Data Analysis
-        analyzePerformance(processList, timeElapsed, totalBurstTime, totalWaitingTime, totalTurnaroundTime, totalResponseTime);
+        analyzePerformance(processList, timeElapsed, totalBurstTime);
     }
 
     // Shortest Job First (non-preemptive) Algorithm 
