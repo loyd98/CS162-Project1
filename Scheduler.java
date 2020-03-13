@@ -9,7 +9,7 @@ public class Scheduler {
     private DecimalFormat df;
 
     // First [] indicates the test case while the second [] stores the processes of said test case.
-    private Process processList[][];
+    private Process testCaseList[][];
 
     private Scanner input;
     private String[] schedulerAlgo, stdInput;
@@ -27,7 +27,7 @@ public class Scheduler {
         testCases = input.nextInt();
         input.nextLine();
         schedulerAlgo = new String[testCases];
-        processList = new Process[testCases][];
+        testCaseList = new Process[testCases][];
 
         for(int i = 0; i < testCases; i++) {
             stdInput = input.nextLine().split(" ");
@@ -38,36 +38,36 @@ public class Scheduler {
                 timeQuantum.add(Integer.parseInt(stdInput[2]));
             }
 
-            processList[i] = new Process[numOfProcesses];
+            testCaseList[i] = new Process[numOfProcesses];
             for(int j = 0; j < numOfProcesses; j++) {
                 int arrivalTime = input.nextInt(); 
                 int burstTime = input.nextInt();
                 int niceLevel = input.nextInt();
                 input.nextLine();
-                processList[i][j] = new Process(j, arrivalTime, burstTime, niceLevel);
+                testCaseList[i][j] = new Process(j, arrivalTime, burstTime, niceLevel);
             }
         } 
         
         System.out.println("\n" + "-----OUTPUT-----");
-        for(int i = 0; i < processList.length; i++) {
+        for(int i = 0; i < testCaseList.length; i++) {
             System.out.println((i + 1) + " " + schedulerAlgo[i]);
 
             if(schedulerAlgo[i].equals("FCFS")) {
-                useFCFS(processList[i]);
+                useFCFS(testCaseList[i]);
             }
             else if(schedulerAlgo[i].equals("SJF")) {
-                useSJF(processList[i]);
+                useSJF(testCaseList[i]);
             }
             else if(schedulerAlgo[i].equals("SRTF")) {
-                useSRTF(processList[i]);
+                useSRTF(testCaseList[i]);
             }
             else if(schedulerAlgo[i].equals("P")) {
-                useP(processList[i]);
+                useP(testCaseList[i]);
             }
             else if(schedulerAlgo[i].equals("RR")) {
                 int q = timeQuantum.get(0);
                 timeQuantum.remove(0);
-                useRR(processList[i], q);
+                useRR(testCaseList[i], q);
             }
         }
     }
