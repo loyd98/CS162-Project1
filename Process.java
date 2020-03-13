@@ -23,7 +23,7 @@ public class Process {
         return burstTime;
     }
 
-    public int getNiceTime() {
+    public int getNiceLevel() {
         return niceLevel;
     }
 
