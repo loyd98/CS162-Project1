@@ -1,5 +1,9 @@
 public class FCFS extends Scheduler {
 
+    public FCFS() {
+        super();
+    }
+
     @Override
     public void execute(Process[] processList) {
         int timeElapsed = 0;
