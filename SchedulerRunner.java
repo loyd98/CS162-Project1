@@ -1,7 +1,7 @@
 public class SchedulerRunner {
 
     public static void main(String args[]) {
-        Scheduler scheduler = new Scheduler();
+        InputHandler scheduler = new InputHandler();
         scheduler.executeScheduler();
     }
 }
