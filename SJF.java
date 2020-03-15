@@ -3,6 +3,10 @@ import java.util.Arrays;
 
 public class SJF extends Scheduler {
 
+    public SJF() {
+        super();
+    }
+
     @Override
     public void execute(Process[] processList) {
         int timeElapsed = 0;
