@@ -16,8 +16,16 @@ public class Process {
         return index;
     }
 
+    public void updateArrivalTime(int n) {
+        arrivalTime = n;
+    }
+
     public int getArrivalTime() {
         return arrivalTime;
+    }
+
+    public void updateBurstTime(int n) {
+        burstTime = n;
     }
 
     public int getBurstTime() {

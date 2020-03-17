@@ -18,7 +18,7 @@ public class FCFS extends Scheduler {
         Process[] arrivalTimeList = processList.clone();
         bubbleSort(arrivalTimeList);
 
-        for(int i = 0; i < arrivalTimeList.length; i++) {
+        for (int i = 0; i < arrivalTimeList.length; i++) {
             if(timeElapsed < arrivalTimeList[i].getArrivalTime()) {
                 timeElapsed = arrivalTimeList[i].getArrivalTime();
             }

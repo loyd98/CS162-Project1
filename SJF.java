@@ -21,20 +21,20 @@ public class SJF extends Scheduler {
         Process[] arrivalTimeList = processList.clone();
         ArrayList<Process> processQueue = new ArrayList<>(Arrays.asList(bubbleSort(arrivalTimeList)));
 
-        while(!processQueue.isEmpty()) {
+        while (!processQueue.isEmpty()) {
             if(timeElapsed < processQueue.get(0).getArrivalTime()) {
                 timeElapsed = processQueue.get(0).getArrivalTime();
             }
 
-            if(timeElapsed >= processQueue.get(0).getArrivalTime()) {
+            if (timeElapsed >= processQueue.get(0).getArrivalTime()) {
 
                 // Modified bubble sort algorithm
-                for(int i = 0; i < processQueue.size(); i++) {
+                for (int i = 0; i < processQueue.size(); i++) {
                     for(int j = 0; j < processQueue.size() - 1 - i; j++) {
                         // Checks if the current time encompasses currently selected process
                         // If true then compare burst times.
                         if (timeElapsed >= processQueue.get(j + 1).getArrivalTime()) {
-                            if(processQueue.get(j).getBurstTime() > processQueue.get(j + 1).getBurstTime()) {
+                            if (processQueue.get(j).getBurstTime() > processQueue.get(j + 1).getBurstTime()) {
                                 Process temp = processQueue.get(j);
                                 processQueue.set(j, processQueue.get(j + 1));
                                 processQueue.set(j + 1, temp);
