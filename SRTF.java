@@ -16,29 +16,31 @@ public class SRTF extends Scheduler {
         ArrayList<Process> processQueue = new ArrayList<>(Arrays.asList(bubbleSort(arrivalTimeList)));
 
         // added arbitrary number for control
-        while (timeElapsed != 30) {
+        while (timeElapsed != 41) {
             Process current = null;
             int minBurstTime = Integer.MAX_VALUE;
 
             for (Process p: processQueue) {
                 // If process is not done yet
                 if (p.getBurstTime() != -1) {
-                    if (p.getArrivalTime() == timeElapsed && p.getBurstTime() < minBurstTime) {
+                    if (p.getArrivalTime() <= timeElapsed && p.getBurstTime() < minBurstTime) {
                         //switch
+
                         timeEntered = p.getArrivalTime();
                         current = p;
                         minBurstTime = p.getBurstTime();
 
+                        System.out.println(timeEntered + " P" + p.getIndex() + " " + p.getBurstTime() + "........" + timeElapsed);
                         //must print this out when switching only
-                        System.out.println(timeEntered + " P" + current.getIndex() + " 1" + current.getRemainingTime());
+
                     }
                 }
             }
 
+            timeElapsed++;
 
             if (current != null) {
 //                System.out.println(timeElapsed);
-                timeElapsed++;
                 current.decreaseBurstTime(1);
             }
         }
