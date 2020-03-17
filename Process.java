@@ -17,7 +17,7 @@ public class Process {
     }
 
     public void updateArrivalTime(int n) {
-        arrivalTime = n;
+        arrivalTime += n;
     }
 
     public int getArrivalTime() {

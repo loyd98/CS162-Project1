@@ -17,6 +17,7 @@ public class InputHandler {
     private Scheduler fcfs;
     private Scheduler sjf;
     private Scheduler srtf;
+    private Scheduler p;
 
 
     public InputHandler() {
@@ -28,6 +29,7 @@ public class InputHandler {
         fcfs = new FCFS();
         sjf = new SJF();
         srtf = new SRTF();
+        p = new Priority();
     }
 
     public void executeScheduler() {
@@ -70,22 +72,13 @@ public class InputHandler {
                 srtf.execute(testCaseList[i]);
             }
             else if(schedulerAlgo[i].equals("P")) {
-                useP(testCaseList[i]);
+                p.execute(testCaseList[i]);
             }
             else if(schedulerAlgo[i].equals("RR")) {
                 int q = timeQuantum.get(0);
                 timeQuantum.remove(0);
-                useRR(testCaseList[i], q);
+                //useRR(testCaseList[i], q);
             }
         }
     }
-
-    // Shortest Remaining Time First (preemptive) Algorithm 
-    public void useSRTF(Process[] processList) {}
-
-    // Priority (preemptive) Algorithm 
-    public void useP(Process[] processList) {}
-
-    // Round-Robin Algorithm 
-    public void useRR(Process[] processList, int q) {}
 }
