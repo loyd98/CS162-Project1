@@ -1,12 +1,12 @@
 public class Process {
-    private int index, arrivalTime, burstTime, niceLevel, waitingTime, turnaroundTime, responseTime, remainingTime;
+    private int index, arrivalTime, burstTime, niceLevel, waitingTime, turnaroundTime, responseTime, runningTime;
 
     public Process(int index, int arrivalTime, int burstTime, int niceLevel) {
         this.index = index + 1;
         this.arrivalTime = arrivalTime;
         this.burstTime = burstTime;
         this.niceLevel = niceLevel;
-        remainingTime = burstTime;
+        runningTime = 0;
         waitingTime = 0;
         turnaroundTime = 0;
         responseTime = 0;
@@ -60,15 +60,27 @@ public class Process {
         return responseTime;
     }
 
-    public int getRemainingTime() {
-        return remainingTime - burstTime;
+    public int getRunningTime() {
+        return runningTime;
     }
 
-    public void decreaseRemainingTime(int n) {
-        this.remainingTime -= n;
+    public void increaseRunningTime(int runningTime) {
+        this.runningTime += runningTime;
     }
 
     public void decreaseBurstTime(int n) {
         this.burstTime -= n;
+    }
+
+    public void setArrivalTime(int arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public boolean isCompleted() {
+        return burstTime <= -1;
+    }
+
+    public void setRunningTime(int runningTime) {
+        this.runningTime = runningTime;
     }
 }
