@@ -1,5 +1,6 @@
 public class Process {
-    private int index, arrivalTime, burstTime, niceLevel, waitingTime, turnaroundTime, responseTime, runningTime;
+    private int index, arrivalTime, burstTime, niceLevel, waitingTime, turnaroundTime, responseTime, runningTime, burstCopy, firstArrival;
+    private boolean entered;
 
     public Process(int index, int arrivalTime, int burstTime, int niceLevel) {
         this.index = index + 1;
@@ -10,6 +11,8 @@ public class Process {
         waitingTime = 0;
         turnaroundTime = 0;
         responseTime = 0;
+        burstCopy = burstTime;
+        entered = false;
     }
 
     public int getIndex() {
@@ -64,7 +67,7 @@ public class Process {
         return runningTime;
     }
 
-    public void increaseRunningTime(int runningTime) {
+    public void increaseCPUTime(int runningTime) {
         this.runningTime += runningTime;
     }
 
@@ -72,15 +75,27 @@ public class Process {
         this.burstTime -= n;
     }
 
-    public void setArrivalTime(int arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
-    public boolean isCompleted() {
-        return burstTime <= -1;
-    }
-
     public void setRunningTime(int runningTime) {
         this.runningTime = runningTime;
+    }
+
+    public int getBurstCopy() {
+        return burstCopy;
+    }
+
+    public int getActualArrival() {
+        return firstArrival;
+    }
+
+    public void setActualArrival(int firstArrival) {
+        this.firstArrival = firstArrival;
+    }
+
+    public boolean hasEntered() {
+        return entered;
+    }
+
+    public void setEntered(boolean entered) {
+        this.entered = entered;
     }
 }
